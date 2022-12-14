@@ -10,6 +10,7 @@ using FormValidation;
 
 namespace FormValidation.Controllers
 {
+    [Authorize]
     public class EmployeesController : Controller
     {
         public OfficeDataEntities db = new OfficeDataEntities();

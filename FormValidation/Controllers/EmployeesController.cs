@@ -10,7 +10,7 @@ using FormValidation;
 
 namespace FormValidation.Controllers
 {
-    [Authorize]
+    
     public class EmployeesController : Controller
     {
         public OfficeDataEntities db = new OfficeDataEntities();
@@ -37,6 +37,7 @@ namespace FormValidation.Controllers
         }
 
         // GET: Employees/Create
+        [Authorize(Roles = "Admin,Customer")]
         public ActionResult Create()
         {
             return View();
@@ -47,6 +48,7 @@ namespace FormValidation.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,Customer" ) ]
         public ActionResult Create(Employee employee)
         {
             if (ModelState.IsValid)
@@ -60,6 +62,7 @@ namespace FormValidation.Controllers
         }
 
         // GET: Employees/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -79,6 +82,7 @@ namespace FormValidation.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles ="Admin")]
         public ActionResult Edit([Bind(Include = "Id,FirstName,LastName,Email")] Employee employee)
         {
             if (ModelState.IsValid)
@@ -91,6 +95,7 @@ namespace FormValidation.Controllers
         }
 
         // GET: Employees/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -108,12 +113,20 @@ namespace FormValidation.Controllers
         // POST: Employees/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             Employee employee = db.Employee.Find(id);
             db.Employee.Remove(employee);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        [AllowAnonymous]
+        public ActionResult About()
+        {
+
+            return View();
         }
 
         protected override void Dispose(bool disposing)

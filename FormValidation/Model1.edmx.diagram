@@ -5,8 +5,10 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="d284fefdba034505adec1a38f7b01754" Name="Diagram1">
-        <EntityTypeShape EntityType="OfficeDataModel.Employee" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OfficeDataModel.Employee" Width="1.5" PointX="1.125" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="OfficeDataModel.User" Width="1.5" PointX="3.375" PointY="0.75" />
+        <EntityTypeShape EntityType="OfficeDataModel.UserRole" Width="1.5" PointX="5.5" PointY="0.75" />
+        <AssociationConnector Association="OfficeDataModel.FK_UserRole_User" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

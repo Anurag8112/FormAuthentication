@@ -27,5 +27,7 @@ namespace FormValidation
     
         public virtual DbSet<Employee> Employee { get; set; }
         public virtual DbSet<User> User { get; set; }
+
+        public System.Data.Entity.DbSet<FormValidation.Models.Membership> Memberships { get; set; }
     }
 }
